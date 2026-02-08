@@ -7,7 +7,6 @@ if [ -f "$VERSION_FILE" ]; then
 fi
 [ -z "$VERSION" ] && VERSION="0.5.1"
 
-INSTALL_DIR="/opt/protocloak"
 SYSCTL_CONF="/etc/sysctl.d/99-protocloak.conf"
 EXPECTED_DEVICES=50000
 FD_MULTIPLIER=2
@@ -72,13 +71,20 @@ case "$MODE_CHOICE" in
     *)    echo "Invalid choice, using Server (1)"; APP_MODE="server" ;;
 esac
 
-BINARY_NAME="protocloak_linux_amd64_${APP_MODE}"
+INSTALL_DIR="/opt/protocloak/${APP_MODE}"
+ARCH=$(uname -m)
+case "$ARCH" in
+    x86_64)  ARCH="amd64" ;;
+    aarch64) ARCH="arm64" ;;
+    *)       ARCH="amd64" ;;
+esac
+BINARY_NAME="protocloak_linux_${ARCH}_${APP_MODE}"
 SERVICE_NAME="protocloak-${APP_MODE}"
 SERVICE_FILE="/etc/systemd/system/${SERVICE_NAME}.service"
-CONFIG_FILE="config.yaml"
-DEFAULT_CONFIG="config.${APP_MODE}.yaml"
+CONFIG_FILE="config.${APP_MODE}.yaml"
 ENV_FILE="${INSTALL_DIR}/${SERVICE_NAME}.env"
 PID_FILE="${INSTALL_DIR}/${SERVICE_NAME}.pid"
+GITHUB_RAW_BASE="https://raw.githubusercontent.com/qianfan75/ProtoCloak/main"
 
 T() {
     local key="$1"; shift
@@ -109,11 +115,16 @@ T() {
             install_dir_ok)   echo "安装目录已就绪" ;;
             install_copy)     echo "请将以下文件复制到 ${INSTALL_DIR}/" ;;
             install_copy_bin) echo "  二进制文件: ${BINARY_NAME}" ;;
-            install_copy_cfg) echo "  配置文件:   ${DEFAULT_CONFIG} → ${CONFIG_FILE}" ;;
+            install_copy_cfg) echo "  配置文件:   ${CONFIG_FILE}" ;;
             install_manual)   echo "手动复制文件后，运行此脚本选择 [3] 启动服务" ;;
             install_done)     echo "安装环境准备完成" ;;
             install_running)  echo "检测到 ProtoCloak 正在运行" ;;
             install_stop_q)   echo "是否先停止运行？ (y/n)" ;;
+            download_begin)   echo "正在从 GitHub 下载..." ;;
+            download_bin_ok)  echo "已下载: ${BINARY_NAME}" ;;
+            download_bin_fail) echo "无法下载二进制文件，请手动复制到 ${INSTALL_DIR}/" ;;
+            download_cfg_ok)  echo "已下载配置: ${CONFIG_FILE}" ;;
+            download_cfg_fail) echo "无法下载配置，请手动复制 ${CONFIG_FILE} 到 ${INSTALL_DIR}/" ;;
 
             update_begin)     echo "开始更新 ProtoCloak..." ;;
             update_stop)      echo "停止当前服务..." ;;
@@ -228,11 +239,16 @@ T() {
             install_dir_ok)   echo "Install directory ready" ;;
             install_copy)     echo "Copy the following files to ${INSTALL_DIR}/" ;;
             install_copy_bin) echo "  Binary: ${BINARY_NAME}" ;;
-            install_copy_cfg) echo "  Config: ${DEFAULT_CONFIG} → ${CONFIG_FILE}" ;;
+            install_copy_cfg) echo "  Config: ${CONFIG_FILE}" ;;
             install_manual)   echo "After copying files, run this script and choose [3] to start" ;;
             install_done)     echo "Installation environment ready" ;;
             install_running)  echo "ProtoCloak is currently running" ;;
             install_stop_q)   echo "Stop it first? (y/n)" ;;
+            download_begin)   echo "Downloading from GitHub..." ;;
+            download_bin_ok)  echo "Downloaded: ${BINARY_NAME}" ;;
+            download_bin_fail) echo "Binary download failed; copy manually to ${INSTALL_DIR}/" ;;
+            download_cfg_ok)  echo "Downloaded config: ${CONFIG_FILE}" ;;
+            download_cfg_fail) echo "Config download failed; copy ${CONFIG_FILE} to ${INSTALL_DIR}/" ;;
 
             update_begin)     echo "Updating ProtoCloak..." ;;
             update_stop)      echo "Stopping current service..." ;;
@@ -367,6 +383,53 @@ get_listen_ports() {
     [ "$APP_MODE" = "server" ] && echo "3334" || echo "3333"
 }
 
+do_download() {
+    if ! command -v curl &>/dev/null; then
+        warn "curl not found; skip download"
+        return 1
+    fi
+    mkdir -p "${INSTALL_DIR}"
+    info "$(T download_begin)"
+    local bin_url="${GITHUB_RAW_BASE}/bin/${BINARY_NAME}"
+    local cfg_url="${GITHUB_RAW_BASE}/configs/${CONFIG_FILE}"
+    local bin_ok=0 cfg_ok=0
+    if curl -sLf -o "${INSTALL_DIR}/${BINARY_NAME}" "$bin_url" 2>/dev/null && [ -s "${INSTALL_DIR}/${BINARY_NAME}" ]; then
+        chmod 750 "${INSTALL_DIR}/${BINARY_NAME}"
+        if id -u protocloak &>/dev/null; then
+            chown protocloak:protocloak "${INSTALL_DIR}/${BINARY_NAME}" 2>/dev/null || true
+        fi
+        ok "$(T download_bin_ok)"
+        bin_ok=1
+    else
+        warn "$(T download_bin_fail)"
+    fi
+    if curl -sLf -o "${INSTALL_DIR}/${CONFIG_FILE}" "$cfg_url" 2>/dev/null && [ -s "${INSTALL_DIR}/${CONFIG_FILE}" ]; then
+        if id -u protocloak &>/dev/null; then
+            chown protocloak:protocloak "${INSTALL_DIR}/${CONFIG_FILE}" 2>/dev/null || true
+        fi
+        ok "$(T download_cfg_ok)"
+        cfg_ok=1
+    else
+        warn "$(T download_cfg_fail)"
+    fi
+    [ "$bin_ok" -eq 1 ] && [ "$cfg_ok" -eq 1 ]
+}
+
+do_download_binary_only() {
+    if ! command -v curl &>/dev/null; then
+        return 1
+    fi
+    local bin_url="${GITHUB_RAW_BASE}/bin/${BINARY_NAME}"
+    if curl -sLf -o "${INSTALL_DIR}/${BINARY_NAME}" "$bin_url" 2>/dev/null && [ -s "${INSTALL_DIR}/${BINARY_NAME}" ]; then
+        chmod 750 "${INSTALL_DIR}/${BINARY_NAME}"
+        if id -u protocloak &>/dev/null; then
+            chown protocloak:protocloak "${INSTALL_DIR}/${BINARY_NAME}" 2>/dev/null || true
+        fi
+        return 0
+    fi
+    return 1
+}
+
 check_root() {
     if [ "$EUID" -ne 0 ]; then
         warn "$(T need_root)"
@@ -454,6 +517,9 @@ do_install() {
     do_tune_system
     echo ""
 
+    do_download
+    echo ""
+
     echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════╗${RESET}"
     if [ "$UI_LANG" = "zh" ]; then
         echo -e "${GREEN}║${RESET}  ${BOLD}${GREEN}✓ 安装环境准备完成${RESET}                                    ${GREEN}║${RESET}"
@@ -462,11 +528,20 @@ do_install() {
     fi
     echo -e "${GREEN}╠═══════════════════════════════════════════════════════════════╣${RESET}"
     echo -e "${GREEN}║${RESET}                                                               ${GREEN}║${RESET}"
-    echo -e "${GREEN}║${RESET}  $(T install_copy)  ${GREEN}║${RESET}"
-    echo -e "${GREEN}║${RESET}  $(T install_copy_bin)         ${GREEN}║${RESET}"
-    echo -e "${GREEN}║${RESET}  $(T install_copy_cfg)  ${GREEN}║${RESET}"
-    echo -e "${GREEN}║${RESET}                                                               ${GREEN}║${RESET}"
-    echo -e "${GREEN}║${RESET}  $(T install_manual)  ${GREEN}║${RESET}"
+    if [ -f "${INSTALL_DIR}/${BINARY_NAME}" ] && [ -f "${INSTALL_DIR}/${CONFIG_FILE}" ]; then
+        if [ "$UI_LANG" = "zh" ]; then
+            echo -e "${GREEN}║${RESET}  已就绪。请编辑 ${INSTALL_DIR}/${CONFIG_FILE}（令牌、地址）  ${GREEN}║${RESET}"
+            echo -e "${GREEN}║${RESET}  然后选择 [3] 启动服务。                                  ${GREEN}║${RESET}"
+        else
+            echo -e "${GREEN}║${RESET}  Ready. Edit ${INSTALL_DIR}/${CONFIG_FILE} (token, addresses),  ${GREEN}║${RESET}"
+            echo -e "${GREEN}║${RESET}  then choose [3] Start.                                     ${GREEN}║${RESET}"
+        fi
+    else
+        echo -e "${GREEN}║${RESET}  $(T install_copy)  ${GREEN}║${RESET}"
+        echo -e "${GREEN}║${RESET}  $(T install_copy_bin)         ${GREEN}║${RESET}"
+        echo -e "${GREEN}║${RESET}  $(T install_copy_cfg)  ${GREEN}║${RESET}"
+        echo -e "${GREEN}║${RESET}  $(T install_manual)  ${GREEN}║${RESET}"
+    fi
     echo -e "${GREEN}║${RESET}                                                               ${GREEN}║${RESET}"
     echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════╝${RESET}"
     echo ""
@@ -485,14 +560,18 @@ do_update() {
     fi
 
     echo ""
-    echo -e "  $(T update_copy)"
-    echo -e "    ${CYAN}${INSTALL_DIR}/${BINARY_NAME}${RESET}"
-    echo ""
-
-    if [ "$UI_LANG" = "zh" ]; then
-        read -p "  复制完成后按回车继续... " _
+    info "$(T download_begin)"
+    if do_download_binary_only; then
+        ok "$(T download_bin_ok)"
     else
-        read -p "  Press Enter after copying... " _
+        echo -e "  $(T update_copy)"
+        echo -e "    ${CYAN}${INSTALL_DIR}/${BINARY_NAME}${RESET}"
+        echo ""
+        if [ "$UI_LANG" = "zh" ]; then
+            read -p "  复制完成后按回车继续... " _
+        else
+            read -p "  Press Enter after copying... " _
+        fi
     fi
 
     if [ -f "${INSTALL_DIR}/${BINARY_NAME}" ]; then
@@ -1141,19 +1220,9 @@ do_uninstall() {
         fi
     fi
 
-    rm -f "${INSTALL_DIR}/${BINARY_NAME}"
-    rm -f "${INSTALL_DIR}/${CONFIG_FILE}"
-    rm -f "${ENV_FILE}"
-    rm -f "${PID_FILE}"
-    rm -f "${INSTALL_DIR}/stdout.log"
-    rm -f "${INSTALL_DIR}/error.log"
-    rm -f "${INSTALL_DIR}/debug.log"
-
-    local other_mode
-    [ "$APP_MODE" = "server" ] && other_mode="client" || other_mode="server"
-    local other_bin="protocloak_linux_amd64_${other_mode}"
-    if [ ! -f "${INSTALL_DIR}/${other_bin}" ]; then
-        rm -rf "${INSTALL_DIR}"
+    rm -rf "${INSTALL_DIR}"
+    if [ -d /opt/protocloak ] && [ -z "$(ls -A /opt/protocloak 2>/dev/null)" ]; then
+        rmdir /opt/protocloak 2>/dev/null || true
     fi
 
     ok "$(T uninstall_done)"
