@@ -1,0 +1,41 @@
+# ProtoCloak Client Configuration
+# 客户端配置文件
+
+client:
+  # Authentication token - MUST match server token
+  # 认证令牌 - 必须与服务器令牌匹配
+  # Generate: openssl rand -base64 32
+  token: "change_me_to_secure_random_token"
+  
+  # Connection timeout to server
+  # 连接服务器超时时间
+  dial_timeout: "30s"
+  
+  # Client listeners (for devices to connect)
+  # 客户端监听配置（设备连接到此处）
+  listeners:
+    # Port for devices (connects to server port 3334)
+    # 设备端口（连接到服务器端口 3334）
+    - listen_addr: "0.0.0.0:3333"
+      server_addr: "your_vps_ip:3334"
+      server_addrs:  # Failover servers / 备用服务器
+        - "your_vps_ip:3334"
+        - "backup_vps_ip:3334"
+    
+    # Additional port for second pool (optional)
+    # 第二个上游的额外端口（可选）
+    #- listen_addr: "0.0.0.0:3344"
+    #  server_addr: "your_vps_ip:3335"
+    #  server_addrs:
+    #    - "your_vps_ip:3335"
+
+# Configuration Steps / 配置步骤:
+# 1. Replace "change_me_to_secure_random_token" with your generated token
+#    将 "change_me_to_secure_random_token" 替换为您生成的令牌
+#
+# 2. Replace "your_vps_ip" with your VPS IP address
+#    将 "your_vps_ip" 替换为您的 VPS IP 地址
+#
+# 3. Configure your devices to connect to this proxy:
+#    配置您的设备连接到此代理：
+#    stratum+tcp://127.0.0.1:3333

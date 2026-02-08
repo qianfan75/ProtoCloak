@@ -1,0 +1,38 @@
+# ProtoCloak Server Configuration
+# 服务器配置文件
+
+server:
+  # Authentication token - MUST match client token
+  # 认证令牌 - 必须与客户端令牌匹配
+  # Generate: openssl rand -base64 32
+  token: "change_me_to_secure_random_token"
+  
+  # Connection timeout to upstream
+  # 连接上游超时时间
+  dial_timeout: "30s"
+  
+  # Server listeners
+  # 服务器监听配置
+  listeners:
+    # Example for F2Pool (BTC)
+    # F2Pool（比特币）示例
+    - listen_addr: "0.0.0.0:3334"
+      pool_addr: "btc.f2pool.com:3333"
+      pool_addrs:  # Failover / 备用上游
+        - "btc.f2pool.com:3333"
+        - "btc-asia.f2pool.com:3333"
+    
+    # Example for AntPool (BTC)
+    # AntPool（比特币）示例
+    #- listen_addr: "0.0.0.0:3335"
+    #  pool_addr: "btc.antpool.com:3333"
+    #  pool_addrs:
+    #    - "btc.antpool.com:3333"
+    #    - "btc-eu.antpool.com:3333"
+    
+    # Example for ViaBTC (BTC)
+    # ViaBTC（比特币）示例
+    #- listen_addr: "0.0.0.0:3336"
+    #  pool_addr: "btc.viabtc.com:3333"
+    #  pool_addrs:
+    #    - "btc.viabtc.com:3333"
