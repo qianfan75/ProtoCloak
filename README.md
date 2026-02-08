@@ -96,12 +96,12 @@ client:
 
 Use the management script on each machine. Either run the script from your release directory, or download and run it directly:
 ```bash
-sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/release/scripts/protocloak.sh)
+sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/scripts/protocloak.sh)
 ```
 If you use the one-liner, run it from the directory where the binaries and `config.yaml` are located (e.g. `/opt/protocloak/`). Or place the binaries and config first, then:
 ```bash
 cd /opt/protocloak
-sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/release/scripts/protocloak.sh)
+sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/scripts/protocloak.sh)
 ```
 
 Alternatively, if you have the full release unpacked:
@@ -261,12 +261,12 @@ client:
 
 在每台机器上使用管理脚本。可从发布目录运行，或直接下载并执行：
 ```bash
-sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/release/scripts/protocloak.sh)
+sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/scripts/protocloak.sh)
 ```
 使用一键命令时，请在已放置二进制文件和 `config.yaml` 的目录下执行（例如 `/opt/protocloak/`）。先上传二进制与配置后再执行：
 ```bash
 cd /opt/protocloak
-sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/release/scripts/protocloak.sh)
+sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/scripts/protocloak.sh)
 ```
 
 若已解压完整发布包，也可：

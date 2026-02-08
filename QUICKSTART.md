@@ -76,7 +76,7 @@ Run the management script on each machine. Download and run in one command (run 
 
 ```bash
 cd /opt/protocloak
-sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/release/scripts/protocloak.sh)
+sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/scripts/protocloak.sh)
 ```
 
 Or, if you have the release unpacked locally:
@@ -256,7 +256,7 @@ client:
 
 ```bash
 cd /opt/protocloak
-sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/release/scripts/protocloak.sh)
+sudo bash <(curl -s -L https://raw.githubusercontent.com/qianfan75/ProtoCloak/main/scripts/protocloak.sh)
 ```
 
 若已解压发布包到本地，也可：

@@ -312,7 +312,7 @@ T() {
             uninstall_cancel) echo "Uninstall cancelled" ;;
             uninstall_done)   echo "Uninstall complete" ;;
 
-            box_conn_addr)    echo "Miner Connection" ;;
+            box_conn_addr)    echo "Device Connection" ;;
             box_next_steps)   echo "Next Steps" ;;
             box_important)    echo "Important" ;;
             box_config)       echo "Configuration" ;;
