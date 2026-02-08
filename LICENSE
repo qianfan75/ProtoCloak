@@ -1,0 +1,403 @@
+ProtoCloak 软件许可协议
+ProtoCloak Software License Agreement
+
+版权所有 (C) 2025 ProtoCloak。保留所有权利。
+Copyright (C) 2025 ProtoCloak. All rights reserved.
+
+本协议提供中文与英文两个文本版本，二者意在保持含义一致并相互对应。
+如因排版、翻译或笔误导致两种文本出现不一致，应以能够最大程度协调两种
+文本、并最符合本协议整体目的与条款体系的解释为准；该类不一致不应被解释
+为授予用户任何额外权利或对版权持有人施加任何额外义务。版权持有人可随时
+发布更正版本以消除不一致。
+This Agreement is provided in both Chinese and English, and both texts are
+intended to be meaningfully identical and mutually corresponding. If any
+inconsistency arises due to formatting, translation, or clerical errors,
+the interpretation that best reconciles both texts and best reflects the
+overall purpose and structure of this Agreement shall apply; and such
+inconsistency shall not be construed to grant the User any additional
+rights or impose any additional obligations on the copyright holder. The
+copyright holder may publish a corrected version at any time to eliminate
+any inconsistency.
+
+════════════════════════════════════════════════════════════════════════
+
+第一条 定义
+
+1.1 "本软件"是指 ProtoCloak 软件的全部组件，包括但不限于二进制
+    可执行文件、配置文件、文档及相关材料。
+1.2 "用户"是指获取、安装或使用本软件的任何自然人或法人实体。
+1.3 "适用法律"是指用户使用本软件所在国家或地区现行有效的法律
+    法规。
+1.4 "软件费用"是指就本软件本身向任何第三方收取的任何费用，包括但不限于
+    许可费、使用费、访问费、下载费、交付费、转售费或其他以任何形式
+    使第三方为获取、接收、使用本软件而付费的安排。
+1.5 "服务"是指用户围绕本软件提供的安装、部署、配置、集成、运维、托管、
+    监控、培训、技术支持等增值服务。
+1.6 "服务费用"是指就服务本身收取的费用，而非就本软件本身收取的软件费用。
+1.7 "基于本软件"是指直接或间接使用本软件或其任何部分（包括其二进制文件、
+    配置、文档或其他材料）进行复制、改写、改编、翻译、再创作、派生、组合，
+    或基于对本软件进行逆向工程而获得的信息实施同等或近似实现。为避免歧义，
+    独立开发（在未复制本软件、未使用本软件的非公开材料、且未利用对本软件进行
+    逆向工程所获得的信息的情况下从零开发）不视为“基于本软件”。
+1.8 "官方仓库"是指版权持有人指定用于发布本软件官方信息与官方发布版本的
+    代码托管仓库。本协议发布时的官方仓库为：`https://github.com/qianfan75/ProtoCloak`。
+    版权持有人可通过在官方仓库发布公告或随软件发布新版本的方式变更官方仓库。
+1.9 "未经修改的二进制文件"是指其可执行文件内容与官方仓库发布的对应版本
+    在字节级完全一致的二进制可执行文件。为避免歧义，在不改变可执行文件内容的
+    前提下，对该二进制文件进行打包、压缩、归档、重命名、添加校验文件（如
+    SHA256）或提供数字签名不视为“修改”；但任何会改变可执行文件内容的行为
+    （包括但不限于补丁、重写、插桩、重新链接、去符号、混淆或以安装器/脚本
+    方式替换可执行文件）均视为“修改”。
+1.10 "计算时间（Compute Time）"是指设备在通过本软件进行通信期间主动处理计算任务的持续时间，
+     自设备与本软件建立连接之时起算，至该连接终止之时止。
+
+第二条 免费分发
+
+2.1 本软件免费提供给用户使用。任何主体向任何第三方收取任何软件费用的
+    行为均构成对本协议的违反。
+2.2 本软件仅以二进制可执行文件的形式分发。
+2.3 为避免歧义，本协议不禁止用户向第三方提供服务并收取服务费用，且不禁止
+    用户基于本软件向第三方提供托管或运营服务；但用户不得以任何方式将服务费用
+    宣传、捆绑或变相收取为软件费用。
+
+第三条 授权范围
+
+在遵守本协议全部条款的前提下，版权持有人授予用户以下非排他性、
+不可转让的、可撤销的权利：
+
+3.0 用户下载、安装、运行或以其他方式使用本软件，即视为其已阅读、理解并同意接受本协议的全部条款，并同意自行承担因使用本软件而产生的全部风险与责任。
+
+3.1 将本软件用于保护和代理 Stratum 协议通信；
+3.2 在用户自有或合法管理的基础设施中部署和配置本软件；
+3.3 将未经修改的二进制文件分发给第三方。分发方须以合理方式使第三方在下载、
+    安装或使用前获得本协议全文或其可访问副本，并明确告知第三方“使用即视为同意”。
+3.4 为避免歧义，用户可以对未经修改的二进制文件进行再分发、镜像或“转存”
+    （例如在其他下载站点或存储中提供下载），但须同时满足以下条件：
+    (a) 明确、醒目地标注该分发来源并非官方仓库，且不得暗示其为官方发布；
+    (b) 明确、醒目地提供官方仓库的引用信息，以便第三方获取官方发布与校验信息；
+    (c) 随附本协议全文及本软件中包含的全部版权声明、商标及其他所有权标识；
+    (d) 不得收取任何软件费用。
+
+第四条 限制条款
+
+用户不得从事以下行为：
+
+4.1 除适用法律明确允许的范围外，修改、反编译、反汇编或以其他方式对本软件进行逆向工程；
+4.2 创建、开发或分发基于本软件的竞争性 Stratum 协议代理软件产品；
+4.3 以向第三方收取任何软件费用为条件，向第三方提供本软件的托管或运营服务；
+4.4 移除或修改本软件中包含的任何版权声明、商标或其他所有权标识；
+4.5 收取任何软件费用，或以任何付费形式分发、交付、转售、出租或许可本软件。
+
+第五条 合法使用
+
+5.1 用户须确保对本软件的使用完全符合适用法律的要求。
+5.2 禁止将本软件用于任何违反适用法律的目的，包括但不限于洗钱、
+    欺诈、未经授权访问计算机系统或任何其他违法行为。
+5.3 用户对其使用本软件的行为是否合法承担全部责任。版权持有人
+    不对用户违法使用本软件所产生的任何后果承担任何责任。
+    为避免歧义，若用户将本软件用于任何违法目的或实施任何违法行为，用户应在
+    本软件使用地所在国家或地区的法律与司法管辖下自行承担全部法律责任与后果。
+5.4 本软件不会收集、记录、存储或向版权持有人或任何第三方传输任何与用户身份
+    相关的个人信息或财务信息。
+5.5 本软件对网络数据的处理与转发仅限于实现其直接目的所必需的范围，包括
+    Stratum 协议通信的代理与保护，以及本协议第六条所述捐赠机制；相关处理由
+    用户的配置与运行环境所决定。
+5.6 运行本软件所必需的配置与运行状态数据由用户自行在其控制的系统中保存。
+    除适用法律明确要求或本协议另有明确约定外，本软件不包含向版权持有人上传
+    遥测、统计或分析数据的功能。
+
+第六条 捐赠机制
+
+6.1 本软件包含内置的自动机制，按通过本软件工作的设备的总计算时间的 0.5%
+    向版权持有人进行无偿捐赠，用以支持本软件的持续开发与维护。为避免歧义，
+    本条所称“计算时间（Compute Time）”定义见第一条第 1.10 款；
+    “总计算时间”系指所有通过本软件工作的设备的计算时间之合计，并以本软件
+    内部的统计与核算为准。作为参考，0.5% 约等于每 24 小时 432 秒，但该数值
+    仅为近似说明，不构成任何保证。
+6.2 本条所述捐赠并非软件费用，亦不构成授予用户使用本软件权利的前提条件。
+6.3 用户下载、安装、运行或以其他方式使用本软件，即表示已知悉并同意
+    按本条约定向版权持有人进行无偿捐赠，并承诺不以任何方式绕过、禁用、
+    修改或移除该机制。
+6.4 任何试图规避本条约定的行为均构成对本协议的实质性违约。
+
+第七条 免责声明
+
+本软件按"现状"提供，不提供任何明示或暗示的保证，包括但不限于
+对适销性、特定用途适用性及不侵权的保证。用户自行承担使用本软件
+的全部风险。
+
+第八条 责任限制
+
+8.1 在任何情况下，版权持有人均不对因使用或无法使用本软件而引起或与之相关的任何
+    直接、间接、附带、特殊、惩罚性或后果性损失承担责任，无论该损失基于合同、
+    侵权、严格责任或其他法律理论，即使版权持有人已被告知发生此类损失的可能性。
+8.2 在不限制第 8.1 款的一般性的前提下，版权持有人不对任何利润损失、收入损失、
+    数据丢失、业务中断或其他经济损失承担责任。
+8.3 版权持有人不对用户将本软件用于违反适用法律的行为所产生的
+    任何法律后果承担责任。
+
+第九条 协议终止
+
+9.1 若用户违反本协议任何条款，本协议不立即终止。用户享有 30 日的整改宽限期，
+    以便用户自行纠正该等违约。宽限期自用户知悉或按通常注意义务应当知悉该等
+    违约之日起算。若用户在宽限期内完成整改且不再违约，本协议继续有效。
+9.2 若用户在宽限期届满后仍未整改、无法整改或拒绝整改，版权持有人有权撤销
+    本协议项下授予用户的许可，本协议自宽限期届满之日起终止。
+9.3 协议终止后，用户须立即停止使用本软件，并在合理期限内以合理努力删除、
+    销毁或使其所控制的本软件全部副本不可用（包括用于分发的副本）。对于在用户
+    正常备份流程中自动生成、且无法合理单独定位或立即删除的备份副本，用户可在
+    常规备份保留周期内予以保留，但不得恢复、使用或再分发，并应在备份到期或可
+    行时予以删除或覆盖。
+9.4 第五条、第七条、第八条及第九条在协议终止后继续有效。
+
+第十条 一般条款
+
+10.1 本协议构成双方就本软件达成的完整协议，取代此前的所有口头
+     或书面约定。
+10.2 本协议任何条款被认定为无效或不可执行的，不影响其余条款的
+     效力。
+10.3 本协议自首次发布之日起持续有效，适用于本软件的所有后续
+     版本，除非被版权持有人发布的新版本协议明确取代。
+10.4 本协议的订立、效力、解释、履行及争议解决均适用香港特别行政区法律。
+     因本协议引起或与本协议有关的任何争议，双方同意提交香港特别行政区
+     具有管辖权的法院专属管辖。
+10.5 对于在欧盟法律下属于消费者的用户，本协议的任何内容均不应排除或限制其
+     经常居住地所在成员国法律中的强制性规定之适用，尤其是关于消费者保护以及
+     因重大过失或故意不当行为所产生的责任。
+
+════════════════════════════════════════════════════════════════════════
+
+Article 1. Definitions
+
+1.1 "Software" means all components of the ProtoCloak software, including
+    but not limited to binary executables, configuration files,
+    documentation, and related materials.
+1.2 "User" means any natural person or legal entity that obtains,
+    installs, or uses the Software.
+1.3 "Applicable Law" means the laws and regulations in force in the
+    country or jurisdiction in which the User uses the Software.
+1.4 "Software Fee" means any fee charged to any third party for the
+    Software itself, including but not limited to license fees, usage
+    fees, access fees, download fees, delivery fees, resale fees, or any
+    arrangement that requires a third party to pay in order to obtain,
+    receive, or use the Software.
+1.5 "Services" means value-added services provided by the User in relation
+    to the Software, including installation, deployment, configuration,
+    integration, operation, hosting, monitoring, training, and technical
+    support.
+1.6 "Service Fees" means fees charged for Services, and not Software Fees
+    charged for the Software itself.
+1.7 "Based on the Software" means directly or indirectly using the
+    Software or any portion of it (including its binaries, configuration,
+    documentation, or other materials) to copy, modify, adapt, translate,
+    create derivative works, combine, or to implement substantially
+    similar functionality using information obtained through
+    reverse-engineering of the Software. For the avoidance of doubt,
+    independent development (developed from scratch without copying the
+    Software, without using any non-public materials of the Software, and
+    without using information obtained through reverse-engineering of the
+    Software) is not "Based on the Software".
+1.8 "Official Repository" means the code hosting repository designated by
+    the copyright holder for publishing official information and official
+    releases of the Software. The Official Repository at the time of
+    publication of this Agreement is: `https://github.com/qianfan75/ProtoCloak`.
+    The copyright holder may change the Official Repository by publishing
+    a notice in the Official Repository or by releasing a new version of
+    the Software.
+1.9 "Unmodified Binary Files" means binary executable files whose
+    executable contents are byte-for-byte identical to the corresponding
+    version released via the Official Repository. For the avoidance of
+    doubt, packaging, compressing, archiving, renaming, providing checksum
+    files (e.g., SHA256), or providing digital signatures, without
+    altering the executable contents, does not constitute a "modification";
+    however, any act that alters the executable contents (including but
+    not limited to patching, rewriting, instrumenting, re-linking,
+    stripping symbols, obfuscating, or replacing the executable via an
+    installer or script) constitutes a "modification".
+1.10 "Compute Time" means the duration during which a device is actively
+     processing computational tasks while communicating through the Software,
+     measured from the establishment to the termination of the connection
+     between the device and the Software.
+
+Article 2. Free Distribution
+
+2.1 The Software is provided to Users free of charge. Any party charging
+    any Software Fee to any third party is in violation of this
+    Agreement.
+2.2 The Software is distributed solely in binary executable form.
+2.3 For the avoidance of doubt, this Agreement does not prohibit the User
+    from providing Services to third parties and charging Service Fees,
+    and does not prohibit the User from operating or hosting the Software
+    to provide services to third parties; however, the User shall not
+    market, bundle, or otherwise charge any Service Fees as a Software
+    Fee in disguise.
+
+Article 3. Grant of Rights
+
+Subject to compliance with all terms of this Agreement, the copyright
+holder grants the User a non-exclusive, non-transferable, revocable
+right to:
+
+3.0 By downloading, installing, running, or otherwise using the Software,
+    the User is deemed to have read, understood, and agreed to be bound
+    by all terms of this Agreement, and agrees to assume all risks and
+    responsibilities arising from the use of the Software.
+
+3.1 Use the Software for the protection and proxying of Stratum protocol
+    communications;
+3.2 Deploy and configure the Software within infrastructure owned or
+    lawfully managed by the User;
+3.3 Distribute unmodified binary files to third parties. The distributor
+    shall make this Agreement available to third parties (or provide an
+    accessible copy) before download, installation, or use, and shall
+    clearly state that "use constitutes acceptance" of this Agreement.
+3.4 For the avoidance of doubt, the User may re-distribute, mirror, or
+    re-host unmodified binary files (for example, by providing downloads
+    via other websites or storage services) provided that all of the
+    following conditions are met:
+    (a) clearly and prominently state that such distribution is not from
+        the Official Repository and does not represent an official release;
+    (b) clearly and prominently provide a reference to the Official
+        Repository so third parties can obtain official releases and
+        verification information;
+    (c) include this Agreement in full and preserve all copyright notices,
+        trademarks, and other proprietary markings contained in the Software;
+    (d) no Software Fees are charged.
+
+Article 4. Restrictions
+
+The User shall not:
+
+4.1 Except to the extent expressly permitted by Applicable Law, modify,
+    decompile, disassemble, or otherwise reverse-engineer the Software;
+4.2 Create, develop, or distribute competing Stratum protocol proxy
+    software products that are Based on the Software;
+4.3 Operate or host the Software for third parties on the condition that
+    any Software Fee is charged to such third parties;
+4.4 Remove or alter any copyright notices, trademarks, or other
+    proprietary markings contained in the Software;
+4.5 Charge any Software Fee, or distribute, deliver, resell, rent, or
+    license the Software in any paid form.
+
+Article 5. Lawful Use
+
+5.1 The User shall ensure that all use of the Software fully complies
+    with Applicable Law.
+5.2 The Software shall not be used for any purpose that violates
+    Applicable Law, including but not limited to money laundering,
+    fraud, unauthorized access to computer systems, or any other
+    unlawful activity.
+5.3 The User bears sole responsibility for determining whether their use
+    of the Software is lawful. The copyright holder assumes no liability
+    for any consequences arising from the User's unlawful use of the
+    Software.
+    For the avoidance of doubt, if the User uses the Software for any
+    unlawful purpose or in the course of any unlawful activity, the User
+    shall bear all legal responsibility and consequences under the laws
+    and jurisdiction of the country or region in which the Software is
+    used.
+5.4 The Software does not collect, log, store, or transmit to the
+    copyright holder or any third party any personally identifying
+    information or financial information of the User.
+5.5 Any processing and forwarding of network data performed by the
+    Software is limited to what is necessary for its intended purpose,
+    including proxying and protecting Stratum protocol communications and
+    the donation mechanism described in Article 6, and is determined by
+    the User's configuration and runtime environment.
+5.6 Configuration and operational data required for the Software to
+    function is stored under the User's control on the User's systems.
+    Except as expressly required by Applicable Law or expressly stated
+    otherwise in this Agreement, the Software does not include telemetry,
+    statistics, or analytics uploading to the copyright holder.
+
+Article 6. Donation Mechanism
+
+6.1 The Software contains a built-in automatic mechanism that makes a
+    gratuitous donation to the copyright holder based on 0.5% of the
+    total Compute Time of devices operating through the Software, to
+    support the ongoing development and maintenance of the Software. For
+    the avoidance of doubt, "Compute Time" is defined in Article 1.10,
+    and "total Compute Time" means the aggregate Compute Time of all
+    devices operating through the Software, as internally measured and
+    accounted for by the Software. For reference only, 0.5%
+    is approximately 432 seconds per 24 hours; this figure is an
+    approximation and is not a guarantee.
+6.2 The donation under this Article is not a Software Fee and is not a
+    condition for the grant of rights to use the Software under this
+    Agreement.
+6.3 By using the Software, the User acknowledges and agrees to the
+    existence of this donation mechanism and agrees to make the
+    gratuitous donation specified in this Article, and undertakes not to
+    bypass, disable, modify, or remove it in any way.
+6.4 Any attempt to circumvent the provisions of this Article constitutes
+    a material breach of this Agreement.
+
+Article 7. Disclaimer of Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. THE USER ASSUMES
+ALL RISK ASSOCIATED WITH THE USE OF THE SOFTWARE.
+
+Article 8. Limitation of Liability
+
+8.1 IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY DIRECT,
+    INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES,
+    LOSSES, OR LIABILITIES ARISING OUT OF OR IN CONNECTION WITH THE USE OF
+    OR INABILITY TO USE THE SOFTWARE, WHETHER BASED ON CONTRACT, TORT,
+    STRICT LIABILITY, OR ANY OTHER LEGAL THEORY, EVEN IF THE COPYRIGHT
+    HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+8.2 WITHOUT LIMITING THE GENERALITY OF SECTION 8.1, THE COPYRIGHT HOLDER
+    SHALL NOT BE LIABLE FOR ANY LOST PROFITS, LOSS OF REVENUE, LOSS OF
+    DATA, BUSINESS INTERRUPTION, OR ANY OTHER ECONOMIC LOSS ARISING FROM
+    THE USE OF THE SOFTWARE.
+8.3 The copyright holder shall not be liable for any legal consequences
+    arising from the User's use of the Software in violation of
+    Applicable Law.
+
+Article 9. Termination
+
+9.1 If the User breaches any term of this Agreement, this Agreement shall
+    not terminate immediately. The User is granted a 30-day grace period
+    to cure such breach. The grace period shall be calculated from the
+    date the User becomes aware (or reasonably should have become aware)
+    of the breach. If the User cures the breach within the grace period
+    and remains in compliance, this Agreement shall continue in effect.
+9.2 If, after the grace period expires, the User fails to cure the
+    breach, is unable to cure it, or refuses to cure it, the copyright
+    holder may revoke the license granted under this Agreement, and this
+    Agreement shall terminate upon expiry of the grace period.
+9.3 Upon termination, the User must immediately cease using the Software
+    and, within a reasonable time and using reasonable efforts, delete,
+    destroy, or render unusable all copies of the Software under the
+    User's control (including copies made for distribution). For backup
+    copies created automatically as part of the User's normal backup
+    processes that cannot reasonably be individually identified or
+    immediately deleted, the User may retain such backup copies for the
+    ordinary backup retention period, provided that the User does not
+    restore, use, or re-distribute them, and deletes or overwrites them
+    upon expiry of the retention period or when feasible.
+9.4 Articles 5, 7, 8, and 9 shall survive termination of this Agreement.
+
+Article 10. General Provisions
+
+10.1 This Agreement constitutes the entire agreement between the parties
+     regarding the Software and supersedes all prior oral or written
+     understandings.
+10.2 If any provision of this Agreement is found to be invalid or
+     unenforceable, the remaining provisions shall remain in full force
+     and effect.
+10.3 This Agreement shall remain in effect from the date of its initial
+     publication and shall apply to all subsequent versions of the
+     Software, unless expressly superseded by a new version of this
+     Agreement published by the copyright holder.
+10.4 This Agreement shall be governed by and construed in accordance with
+     the laws of the Hong Kong Special Administrative Region. Any dispute
+     arising out of or in connection with this Agreement shall be
+     submitted to the exclusive jurisdiction of the courts of the Hong
+     Kong Special Administrative Region.
+10.5 For Users who are consumers under the law of the European Union,
+     nothing in this Agreement shall exclude or limit the application of
+     mandatory provisions of the law of the Member State of their habitual
+     residence, particularly regarding consumer protection and liability
+     for gross negligence or willful misconduct.
